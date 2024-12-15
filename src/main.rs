@@ -1,3 +1,4 @@
+
 fn main() {
     let s1 = "Hello, мир! 🦁";
     let s2 = String::from("سلام دنیا");
@@ -23,7 +24,8 @@ fn main() {
     let s6 = String::from("world!");
     let s7 = s5 + &s6; // String must be first
     /*
-     * println!(" > 5: {s5}");  canNOT be done as s5 is borrowed
+     * println!(" > 5: {s5}");  
+     * canNOT be done as s5 is borrowed
      * &s5 + &s6 won't work
      * s5 + s6 won't work as well
      * &s5 + s6 won't work either    
@@ -51,9 +53,54 @@ fn main() {
     println!(" > 12: {s12}");
     println!(" > 13: {s13}");
     println!(" > 14: {s14}");
-    // println!(" > 15: {s15}");   // canNOT be done as s15 is borrowed by s16
+    // println!(" > 15: {s15}");   
+    // canNOT be done as s15 is borrowed by s16
     println!(" > 16: {s16}");
 
-    
+    // Indexing Strings
+    let s17 = "🦁🦁🦁🦁🦁";
+    let s18 = &s17[..4];
+        // as an emoji is 4 bytes
+    println!(" > 17: {s17}");
+    println!(" > 18: {s18}");
 
+    let mut count = 1;
+    for character in s17.bytes() {
+        println!("\t> {count}: {character}");
+        count +=1;
+    }
+
+    count = 1;
+    for character in s17.chars() {
+        println!("   >> {count}: {character}");
+        count +=1;
+    }
+
+    let thank_you = "شكرًا لك";
+    count = 1;
+    for character in thank_you.chars() {
+        println!("   >> {count}: {character}");
+        count +=1;
+    }
+    /*
+    count = 1;
+    for character in thank_you.graphemes(true) {
+        println!("   >> {count}: {character}");
+        count +=1;
+    }
+    use unicode_segmentation::UnicodeSegmentation;
+        to print individual singns of this string 
+        in an appropriate way
+    */ 
+
+    let s19 = "Hello, World!";
+    let s20 = String::from("Hello, World!");
+
+    println!("{}", my_function(s19));
+    println!("{}", my_function(&s20));
+    
+}
+
+fn my_function(a: &str) -> String {
+    return format!(" > {a}")
 }
